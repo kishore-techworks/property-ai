@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Body
 from fastapi.middleware.cors import CORSMiddleware
 from services.ai_service import process_query
@@ -12,6 +13,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 4000))  # Default to 4000 if PORT not set
 
 @app.get("/")
 async def root():
